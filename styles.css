@@ -56,6 +56,15 @@ nav {
     margin-left: 25px;
 }
 
+.btn {
+    background: none;
+    color: inherit;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor:pointer;
+}
+
 .nav-left ul li a {
     text-decoration: none;
 
@@ -107,6 +116,10 @@ nav {
     height: 245px;
     border-radius: 20px;
     object-fit: cover;
+}
+
+.inactive {
+    display: none;
 }
 
 
