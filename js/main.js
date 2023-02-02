@@ -1,4 +1,4 @@
-const cards = document.querySelector('.cards-container');
+/*const cards = document.querySelector('.cards-container');
 const mobileMenu = document.querySelector('.mobile-menu');
 const hamburger = document.querySelector('.menu');
 const filterAll = document.querySelector('.all');
@@ -10,9 +10,9 @@ const filterGame = document.querySelector('.game');
 
 //Listeners
 
-
-//Array of everything
-const everything = [
+//Arrays by category
+    //Array of anime
+const anime = [
     {
         name: 'Random Access Memories',
         author: 'Daft Punk',
@@ -99,41 +99,7 @@ const everything = [
     }
 ]
 
-everything.sort((a, b) => a.name.localeCompare(b.name))
-
-//Arrays by category
-    //Movies
-const movies = [
-    {
-        name: 'Rogue One: A Star Wars Story',
-        author: 'Gareth Edwards',
-        year: 2016,
-        image: 'https://upload.wikimedia.org/wikipedia/en/d/d4/Rogue_One%2C_A_Star_Wars_Story_poster.png',
-        category: 'movie',
-    },
-    {
-        name: 'Spider-Man: Into the Spider-Verse',
-        author: 'B. Persichetti, P. Ramsay & R. Rothman',
-        year: 2018,
-        image: 'https://cdn.shopify.com/s/files/1/0265/2769/4934/products/spiderman_into_the_spiderverse_xxlg_2024x.jpg?v=1629986806',
-        category: 'movie',
-    },
-    {
-        name: 'Ghost in the Shell',
-        author: 'Oshii Mamoru',
-        year: 1995,
-        image: 'https://i.pinimg.com/originals/cb/56/f5/cb56f53b28fabf0a8d07fed6713b56cc.jpg',
-        category: 'anime',
-    },
-    {
-        name: 'Everything Everywhere All at Once',
-        author: 'D. Kwan & D. Scheinert',
-        year: 2022,
-        image: 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX1000_.jpg',
-        category: 'movie',
-    }
-]
-movies.sort((a, b) => a.name.localeCompare(b.name))
+anime.sort((a, b) => a.name.localeCompare(b.name))
 
 //Functions
 function render(arr) {
@@ -170,4 +136,65 @@ function render(arr) {
     }
 }
 
-render(everything);
+render(anime);*/
+
+const media = [
+    { 
+        id: 1, 
+        title: "The Shawshank Redemption",
+        author: "Tom", 
+        year: 1999,
+        category: "movies", 
+        img: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg" 
+    },
+    { 
+        id: 2, 
+        title: "One Piece",
+        author: "oda", 
+        year: 1999,
+        category: "anime",
+        img: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg"
+
+    },
+    { id: 3, title: "Breaking Bad", category: "series" },
+    { id: 4, title: "The Godfather", category: "movies" },
+    { id: 5, title: "Naruto", category: "manga" },
+  ];
+
+const filterMedia = (category) => {
+    if (category === "all") {
+      return media;
+    } else {
+      return media.filter((item) => item.category === category);
+    }
+  };
+
+const renderMedia = (filteredMedia) => {
+    const mediaContainer = document.querySelector(".cards-container");
+    mediaContainer.innerHTML = "";
+
+    filteredMedia.forEach((item) => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        const cardImg = document.createElement('img');
+        cardImg.src = item.img;
+        card.innerHTML = `
+        ${cardImg.outerHTML}
+        <h3>${item.title}</h3>
+        <p>Category: ${item.category}</p>
+        `;
+
+        mediaContainer.appendChild(card);
+    });
+};
+
+const categorySelector = document.getElementById("category-selector");
+    categorySelector.addEventListener("change", (event) => {
+    const selectedCategory = event.target.value;
+    const filteredMedia = filterMedia(selectedCategory);
+    renderMedia(filteredMedia);
+  });
+
+const filteredMedia = filterMedia("all");
+renderMedia(filteredMedia)
