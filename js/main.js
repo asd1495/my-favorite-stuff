@@ -141,25 +141,82 @@ render(anime);*/
 const media = [
     { 
         id: 1, 
-        title: "The Shawshank Redemption",
-        author: "Tom", 
-        year: 1999,
-        category: "movies", 
-        img: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg" 
+        title: "Random Access Memories",
+        author: "Daft Punk", 
+        year: 2010,
+        category: "music", 
+        img: "https://m.media-amazon.com/images/I/41GAT8L+HYL._AC_SX466_.jpg" 
     },
     { 
         id: 2, 
-        title: "One Piece",
-        author: "oda", 
-        year: 1999,
-        category: "anime",
-        img: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg"
+        title: "Hot Fuss",
+        author: "The Killers", 
+        year: 2004,
+        category: "music",
+        img: "https://upload.wikimedia.org/wikipedia/en/1/17/The_Killers_-_Hot_Fuss.png"
+    },
+    { 
+        id: 3, 
+        title: "Everything Everywhere All at Once", 
+        author: "D. Kwan & D. Scheinert",
+        year: 2022,
+        category: "movies",
+        img: 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX1000_.jpg'
+    },
+    { 
+        id: 4, 
+        title: "Ghost in the Shell",
+        author: "Oshii Mamoru", 
+        year: 1995,
+        category: "movies",
+        img: 'https://i.pinimg.com/originals/cb/56/f5/cb56f53b28fabf0a8d07fed6713b56cc.jpg'
 
     },
-    { id: 3, title: "Breaking Bad", category: "series" },
-    { id: 4, title: "The Godfather", category: "movies" },
-    { id: 5, title: "Naruto", category: "manga" },
-  ];
+    { 
+        id: 5, 
+        title: "Crash Bandicoot 3: Warped",
+        author: "Naughty Dog",
+        year: 1998, 
+        category: "video-game",
+        img: 'https://upload.wikimedia.org/wikipedia/en/3/3e/Crash_Bandicoot_3_Warped_Original_Box_Art.jpg'
+    },
+    {
+        id: 6, 
+        title: "Spider-Man: Into the Spider-Verse",
+        author: "B. Persichetti, P. Ramsay & R. Rothman",
+        year: 2018, 
+        category: "movies",
+        img: 'https://cdn.shopify.com/s/files/1/0265/2769/4934/products/spiderman_into_the_spiderverse_xxlg_2024x.jpg?v=1629986806'
+    },
+    {
+        id: 7, 
+        title: "At the Mountains of Madness",
+        author: "H.P. Lovecraft",
+        year: 1936, 
+        category: "books",
+        img: 'https://cdn2.penguin.com.au/covers/original/9780241341315.jpg'
+    },
+    {
+        id: 8, 
+        title: "Neon Genesis Evangelion",
+        author: "Anno Hideaki",
+        year: 1995, 
+        category: "anime",
+        img: 'https://m.media-amazon.com/images/M/MV5BMGRlZTIwZjQtZWU2NC00MDYzLTg0YWUtOGY3YjU4NTUzOTU1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg'
+    },
+    {
+        id: 9, 
+        title: "Bloodborne",
+        author: "FromSoftware",
+        year: 2015, 
+        category: "video-game",
+        img: 'https://m.media-amazon.com/images/M/MV5BMGRlZTIwZjQtZWU2NC00MDYzLTg0YWUtOGY3YjU4NTUzOTU1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg'
+    },
+    
+    
+];
+
+media.sort((a, b) => a.title.localeCompare(b.title));
 
 const filterMedia = (category) => {
     if (category === "all") {
@@ -179,17 +236,22 @@ const renderMedia = (filteredMedia) => {
 
         const cardImg = document.createElement('img');
         cardImg.src = item.img;
+
+        const cardAuthor = document.createElement('p');
+        cardAuthor.classList.add('product-info');
+
         card.innerHTML = `
         ${cardImg.outerHTML}
         <h3>${item.title}</h3>
-        <p>Category: ${item.category}</p>
+        <p>${item.author}</p>
+        <p>${item.year}</p>
         `;
 
         mediaContainer.appendChild(card);
     });
 };
 
-const categorySelector = document.getElementById("category-selector");
+const categorySelector = document.querySelector(".category-selector");
     categorySelector.addEventListener("change", (event) => {
     const selectedCategory = event.target.value;
     const filteredMedia = filterMedia(selectedCategory);

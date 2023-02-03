@@ -133,6 +133,13 @@ nav {
     }
 }
 */
+
+
+.category-selector {
+    display: block;
+    margin: 0 auto;
+}
+
 .outer-container {
     padding: 0;
 }
